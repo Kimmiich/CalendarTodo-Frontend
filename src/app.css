@@ -1,0 +1,308 @@
+/*--- Fonts:
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Satisfy', cursive;
+-----*/
+
+/*----Layout styling----*/
+
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+/*--------------- Header ----------------*/
+
+.header-nav {
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 30px 0px 30px;
+  border-bottom: 2px solid black;
+}
+
+h1 {
+  background: rgb(139, 223, 238);
+  padding: 0px 15px;
+  margin: 5px;
+  font-size: 45px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(160, 160, 160, 0.3);
+}
+
+h2 {
+  cursor: pointer;
+  transition: 0.3s linear;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
+h2:hover {
+  transform: scale(1.05);
+  background: rgb(139, 223, 238);
+  box-shadow: 1px 1px 3px rgba(160, 160, 160, 0.3);
+}
+
+.left:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(130, 213, 228) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.right:hover {
+  background: linear-gradient(
+    270deg,
+    rgb(130, 213, 228) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+/*--------------------------------------------*/
+
+/*--------------- Main ----------------*/
+
+.main-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/*--------------- Aside/todo ----------------*/
+
+h3 {
+  font-size: 22px;
+  margin: 5px;
+}
+
+.aside-content {
+  border-right: 2px solid black;
+  width: 30%;
+  padding: 5px 20px;
+}
+
+/*- Selected day styles -*/
+.selected-day-container {
+  background-color: rgba(255, 255, 255, 0.918);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin: 5px 0px;
+  padding: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.selected-day-info {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.selected-day-title {
+  width: 40%;
+  margin: 5px;
+}
+
+.selected-day-second-title {
+  width: 50%;
+  text-align: right;
+  margin: 5px;
+}
+
+.selected-day-month {
+  font-size: 15px;
+  font-style: italic;
+  margin: 0px 5px;
+  width: 100%;
+  text-align: right;
+}
+
+.selected-day-todos {
+  margin: 5px;
+  padding: 0px;
+}
+
+/*- add box/form styles -*/
+.add-todo-container {
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.add-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+  transition: 0.2s linear;
+  display: inline-block;
+  margin: 5px;
+}
+
+.add-btn:focus {
+  outline: none;
+}
+
+.add-btn:hover {
+  transform: scale(1.05);
+}
+
+.add-btn-block {
+  display: block;
+  width: 100%;
+}
+
+label {
+  text-decoration: underline 1px solid black;
+  margin: 0px 5px;
+  display: block;
+}
+
+input {
+  margin: 2px 5px 8px 5px;
+  padding: 3px 7px;
+  font-size: 15px;
+  width: 90%;
+  height: 20px;
+}
+
+/*-All todos-*/
+.all-todos-container {
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.all-todos-list {
+  padding: 0px;
+}
+
+.all-todos-text {
+  font-style: italic;
+  margin: 0px auto;
+}
+
+.todo {
+  list-style: none;
+  background: #f4f4f4;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-name {
+  margin: 0px;
+  width: 60%;
+}
+
+.todo.completed {
+  text-decoration: line-through;
+}
+
+.bin-icon {
+  transition: 0.2s linear;
+}
+
+.bin-icon:hover {
+  transform: scale(1.03);
+  color: red;
+}
+
+/*--------------------------------------------*/
+
+/*--------------- Main/Calendar ----------------*/
+
+.main-content {
+  width: 70%;
+  padding: 5px 20px;
+}
+
+.monthly-spread {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(auto, 1fr));
+  grid-template-rows: repeat(6, minmax(35px, 1fr));
+  grid-gap: 5px;
+  padding: 0 15px;
+}
+
+/*- Day styles -*/
+
+.day-container {
+  border: 1px solid black;
+}
+.date-icon {
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.date-icon.date-icon[data-active-month='false'] {
+  color: rgba(0, 0, 0, 0.3);
+}
+.date-icon.active,
+.date-icon.selected {
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.date-icon {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+}
+
+/*-----------------------*/
+
+/*Weekday styles*/
+
+.weekdays-container {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(auto, 1fr));
+  grid-template-rows: 1;
+  padding: 15px;
+}
+
+.weekday {
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.weekday.active {
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/*---------------*/
