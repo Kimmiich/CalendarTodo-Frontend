@@ -49,8 +49,14 @@ const DateIndicator = ({
             moment(selectDate).format('YYYY-MM-DD')
         );
 
-        todaysHolidays.map((day) => {
-          return day.helgdag ? day.helgdag : console.log('nope');
+        return todaysHolidays.map((day) => {
+          return day.helgdag ? (
+            <p key={day.helgdag} className="holiday">
+              {day.helgdag}
+            </p>
+          ) : (
+            console.log('nope')
+          );
         });
       }
     };

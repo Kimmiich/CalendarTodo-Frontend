@@ -60,3 +60,11 @@
 .task-tracker-on-day {
   margin: 0px 0px 0px 5px;
 }
+
+.holiday {
+  font-weight: bold;
+  color: red;
+  font-size: 12px;
+  margin-top: 0px;
+  align-self: center;
+}
