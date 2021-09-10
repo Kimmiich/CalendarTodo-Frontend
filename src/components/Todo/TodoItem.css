@@ -1,0 +1,28 @@
+.todo {
+  list-style: none;
+  background: #f4f4f4;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-name {
+  margin: 0px;
+  width: 60%;
+}
+
+.todo.completed {
+  text-decoration: line-through;
+}
+
+.bin-icon {
+  transition: 0.2s linear;
+}
+
+.bin-icon:hover {
+  transform: scale(1.03);
+  color: red;
+}

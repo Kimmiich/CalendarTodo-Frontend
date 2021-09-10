@@ -1,3 +1,5 @@
+import './AddTodo.css';
+
 function AddTodo({ onAdd, text, setText, day, setDay }) {
   const onSubmit = (e) => {
     e.preventDefault();

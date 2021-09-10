@@ -8,6 +8,7 @@ import {
   updateTodoDb,
   deleteTodoDb,
   getAllTodosDb,
+  getHolidayApi,
 } from './utils/APIHelper';
 import TodoList from './components/Todo/TodoList';
 import AddTodo from './components/Todo/AddTodo';
@@ -25,6 +26,10 @@ function App() {
 
   const [text, setText] = useState('');
   const [day, setDay] = useState('');
+  const [holidays, setHolidays] = useState([]);
+  const [yearMonth, setYearMonth] = useState(
+    moment(selectDate).format('YYYY/MM')
+  );
 
   //Fetch to database. Same as componentDidMount and ComponentDidUpdate
   useEffect(() => {
@@ -35,9 +40,17 @@ function App() {
     fetchTodoAndSetTodos();
   }, []);
 
+  //Fetch api
+  useEffect(() => {
+    const fetchHolidaysAndSetHolidays = async () => {
+      const holidays = await getHolidayApi(yearMonth);
+      setHolidays(holidays);
+    };
+    fetchHolidaysAndSetHolidays();
+  }, [yearMonth]);
+
   //Eventhandler that calls fetchfunction: Sends new task to db
   const createTodo = async (todo) => {
-    console.log(todo);
     let newTodo = {
       task: todo.text,
       date: todo.day,
@@ -68,7 +81,11 @@ function App() {
 
   return (
     <>
-      <MonthIndicator selectDate={selectDate} setSelectDate={setSelectDate} />
+      <MonthIndicator
+        selectDate={selectDate}
+        setSelectDate={setSelectDate}
+        setYearMonth={setYearMonth}
+      />
       <main className="main-container">
         <aside className="aside-content">
           <CalendarDay
@@ -95,6 +112,7 @@ function App() {
             todos={todos}
             onDelete={deleteTodo}
             onToggle={updateTodo}
+            holidays={holidays}
           />
         </main>
       </main>

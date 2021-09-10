@@ -1,0 +1,47 @@
+.header-nav {
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 30px 0px 30px;
+  border-bottom: 2px solid black;
+  grid-area: Header;
+}
+
+h1 {
+  background: rgb(139, 223, 238);
+  padding: 0px 15px;
+  margin: 5px;
+  font-size: 45px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(160, 160, 160, 0.3);
+}
+
+h2 {
+  cursor: pointer;
+  transition: 0.3s linear;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
+h2:hover {
+  transform: scale(1.05);
+  background: rgb(139, 223, 238);
+  box-shadow: 1px 1px 3px rgba(160, 160, 160, 0.3);
+}
+
+.left:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(130, 213, 228) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.right:hover {
+  background: linear-gradient(
+    270deg,
+    rgb(130, 213, 228) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 import moment from 'moment';
+import './TodoList.css';
 
 function TodoList({ todos, onDelete, onToggle }) {
   //Sort the todos before printing them

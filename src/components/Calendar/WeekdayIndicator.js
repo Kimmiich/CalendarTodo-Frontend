@@ -1,4 +1,5 @@
 import React from 'react';
+import './WeekdayIndicator.css';
 
 const WeekdayIndicator = () => {
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

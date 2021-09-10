@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import TodoItem from '../Todo/TodoItem';
+import './CalenderDay.css';
 
 const CalendarDay = ({ selectDate, todos, onDelete, onToggle }) => {
   const getTodos = (selectDate, todos) => {

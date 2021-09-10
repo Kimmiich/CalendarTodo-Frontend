@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiDeleteBinFill } from 'react-icons/ri';
 import moment from 'moment';
+import './TodoItem.css';
 
 function TodoItem({ todo, onDelete, onToggle }) {
   return (

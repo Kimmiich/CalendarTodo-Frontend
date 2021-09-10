@@ -1,11 +1,14 @@
 import React from 'react';
 import { getMonthSet } from '../../utils/date-utils';
 import moment from 'moment';
+import './MonthIndicator.css';
 
-const MonthIndicator = ({ selectDate, setSelectDate }) => {
+const MonthIndicator = ({ selectDate, setSelectDate, setYearMonth }) => {
   const changeDate = (e) => {
     setSelectDate(e.target.getAttribute('data-date'));
+    setYearMonth(moment(e.target.getAttribute('data-date')).format('YYYY/MM'));
   };
+
   const monthSet = getMonthSet(selectDate);
 
   return (

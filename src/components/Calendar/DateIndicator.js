@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   getDayOfMonth,
   getMonthDayYear,
@@ -7,7 +7,7 @@ import {
 } from '../../utils/moment-utils';
 import { getDatesInMonthDisplay } from '../../utils/date-utils';
 import moment from 'moment';
-// import { getHolidayApi } from '../../utils/APIHelper';
+import './DateIndicator.css';
 // import TodoItem from '../Todo/TodoItem';
 
 const DateIndicator = ({
@@ -16,21 +16,8 @@ const DateIndicator = ({
   setSelectDate,
   todos,
   setDay,
+  holidays,
 }) => {
-  // const [holidays, setHolidays] = useState([]);
-
-  // //Fetch api
-  // useEffect((sele) => {
-  //   const fetchHolidaysAndSetHolidays = async () => {
-  //     const holidays = await getHolidayApi(
-  //       moment(selectDate).format('YYYY/MM')
-  //     );
-  //     setHolidays(holidays);
-  //   };
-  //   fetchHolidaysAndSetHolidays();
-  // }, [selectDate]);
-
-  // console.log(holidays);
   //event handling callbacks
   const changeDate = (e) => {
     setSelectDate(e.target.getAttribute('data-date'));
@@ -53,9 +40,41 @@ const DateIndicator = ({
     const active =
       activeDates && activeDates[getMonthDayYear(i.date)] ? 'active' : ';';
 
-    console.log(moment(selectDate).format('YYYY/MM'));
+    const getHoliday = (selectDate) => {
+      if (holidays.dagar) {
+        const value = holidays.dagar;
+        const todaysHolidays = value.filter(
+          (holiday) =>
+            moment(holiday.datum).format('YYYY-MM-DD') ===
+            moment(selectDate).format('YYYY-MM-DD')
+        );
 
-    // const getApiDays = (selectDate) => {};
+        todaysHolidays.map((day) => {
+          return day.helgdag ? console.log(day.helgdag) : console.log('nope');
+        });
+      }
+
+      // const helgdag = todaysHolidays.filter((value) => value + '.helgdag');
+
+      // console.log('helgdag: ' + helgdag);
+    };
+
+    // const getHolidays = (selectDate) => {
+    //   const value = holidays.dagar;
+    //   const todaysHolidays = value.filter(
+    //     (holiday) =>
+    //       moment(holiday.datum).format('YYYY-MM-DD') ===
+    //       moment(selectDate).format('YYYY-MM-DD')
+    //   );
+
+    //   todaysHolidays.map((hol) => <p className="day-holiday">{hol.helgdag}</p>);
+    // };
+    // if (holidays.dagar) {
+    //   const jaja = holidays.dagar;
+    //   jaja.map((day) => {
+    //     return console.log(day.helgdag ? day.helgdag : 'nope');
+    //   });
+    //  }
 
     const getTodos = (selectDate) => {
       const toDaysTodos = todos.filter(
@@ -92,10 +111,13 @@ const DateIndicator = ({
         >
           {getDayOfMonth(i.date)}
         </div>
-        {getTodos(i.date)}
-        <button onClick={handleClick} className="add-indicator-on-day">
-          +
-        </button>
+        {getHoliday(i.date)}
+        <div className="btn-and-tasks">
+          {getTodos(i.date)}
+          <button onClick={handleClick} className="add-indicator-on-day">
+            +
+          </button>
+        </div>
       </article>
     );
   });
