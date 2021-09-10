@@ -50,31 +50,10 @@ const DateIndicator = ({
         );
 
         todaysHolidays.map((day) => {
-          return day.helgdag ? console.log(day.helgdag) : console.log('nope');
+          return day.helgdag ? day.helgdag : console.log('nope');
         });
       }
-
-      // const helgdag = todaysHolidays.filter((value) => value + '.helgdag');
-
-      // console.log('helgdag: ' + helgdag);
     };
-
-    // const getHolidays = (selectDate) => {
-    //   const value = holidays.dagar;
-    //   const todaysHolidays = value.filter(
-    //     (holiday) =>
-    //       moment(holiday.datum).format('YYYY-MM-DD') ===
-    //       moment(selectDate).format('YYYY-MM-DD')
-    //   );
-
-    //   todaysHolidays.map((hol) => <p className="day-holiday">{hol.helgdag}</p>);
-    // };
-    // if (holidays.dagar) {
-    //   const jaja = holidays.dagar;
-    //   jaja.map((day) => {
-    //     return console.log(day.helgdag ? day.helgdag : 'nope');
-    //   });
-    //  }
 
     const getTodos = (selectDate) => {
       const toDaysTodos = todos.filter(
@@ -111,6 +90,7 @@ const DateIndicator = ({
           {getDayOfMonth(i.date)}
         </div>
         {getHoliday(i.date)}
+
         <div className="btn-and-tasks" id={moment(i.date).format('YYYY-MM-DD')}>
           {getTodos(i.date)}
           <button onClick={handleClick} className="add-indicator-on-day">

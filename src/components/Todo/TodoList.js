@@ -4,12 +4,8 @@ import moment from 'moment';
 import './TodoList.css';
 
 function TodoList({ todos, onDelete, onToggle }) {
-  //Sort the todos before printing them
-  const sortedTodos = todos.sort((a, b) =>
-    moment(b.date).format('DD-MM-YYYY') <= moment(a.date).format('DD-MM-YYYY')
-      ? 1
-      : -1
-  );
+  const sortedTodos = todos.sort((a, b) => moment(a.date).diff(b.date));
+
   return (
     <section className="all-todos-container">
       <h3>All todos</h3>

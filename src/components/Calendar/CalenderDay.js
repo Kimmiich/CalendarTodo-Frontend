@@ -22,7 +22,7 @@ const CalendarDay = ({ selectDate, todos, onDelete, onToggle }) => {
   return (
     <section className="selected-day-container">
       <div className="selected-day-info">
-        <h3 className="selected-day-title">Today</h3>
+        <h3 className="selected-day-title">Choosen day</h3>
         <h4 className="selected-day-second-title">
           {moment(selectDate).format('dddd - Do')}
         </h4>
