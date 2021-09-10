@@ -29,7 +29,7 @@ export async function getAllTodosDb() {
 
 export async function getHolidayApi(yearMonth) {
   const { data: holidays } = await axios(
-    `http://sholiday.faboul.se/dagar/v2.1/${yearMonth}`
+    `https://sholiday.faboul.se/dagar/v2.1/${yearMonth}`
   );
 
   return holidays;
