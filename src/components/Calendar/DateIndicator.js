@@ -98,7 +98,6 @@ const DateIndicator = ({
 
     return (
       <article
-        id={moment(i.date).format('YYYY-MM-DD')}
         key={moment(i.date).format('YYYY-DDD')}
         className="day-container"
       >
@@ -112,7 +111,7 @@ const DateIndicator = ({
           {getDayOfMonth(i.date)}
         </div>
         {getHoliday(i.date)}
-        <div className="btn-and-tasks">
+        <div className="btn-and-tasks" id={moment(i.date).format('YYYY-MM-DD')}>
           {getTodos(i.date)}
           <button onClick={handleClick} className="add-indicator-on-day">
             +
