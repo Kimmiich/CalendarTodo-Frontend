@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import './app.css';
+import Errorboundary from './utils/Errorboundary';
 
 //Import of todocomponents and functions
 import {
@@ -80,7 +81,7 @@ function App() {
   };
 
   return (
-    <>
+    <Errorboundary>
       <MonthIndicator
         selectDate={selectDate}
         setSelectDate={setSelectDate}
@@ -116,7 +117,7 @@ function App() {
           />
         </main>
       </main>
-    </>
+    </Errorboundary>
   );
 }
 
