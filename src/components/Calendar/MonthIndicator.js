@@ -1,12 +1,19 @@
-import React from 'react';
 import { getMonthSet } from '../../utils/date-utils';
-import moment from 'moment';
 import './MonthIndicator.css';
+import {
+  getReadableMonthDate,
+  getYear,
+  getMonth,
+} from '../../utils/moment-utils';
 
 const MonthIndicator = ({ selectDate, setSelectDate, setYearMonth }) => {
   const changeDate = (e) => {
     setSelectDate(e.target.getAttribute('data-date'));
-    setYearMonth(moment(e.target.getAttribute('data-date')).format('YYYY/MM'));
+    setYearMonth(
+      `${getYear(e.target.getAttribute('data-date'))}/${getMonth(
+        e.target.getAttribute('data-date')
+      )}`
+    );
   };
 
   const monthSet = getMonthSet(selectDate);
@@ -14,11 +21,13 @@ const MonthIndicator = ({ selectDate, setSelectDate, setYearMonth }) => {
   return (
     <header className="header-nav">
       <h2 className="left" data-date={monthSet.prev} onClick={changeDate}>
-        {moment(monthSet.prev).format('MMMM')}
+        {getReadableMonthDate(monthSet.prev)}
       </h2>
-      <h1>{moment(monthSet.current).format('MMMM - YYYY')}</h1>
+      <h1>{`${getReadableMonthDate(monthSet.current)} - ${getYear(
+        monthSet.current
+      )}`}</h1>
       <h2 className="right" data-date={monthSet.next} onClick={changeDate}>
-        {moment(monthSet.next).format('MMMM')}
+        {getReadableMonthDate(monthSet.next)}
       </h2>
     </header>
   );

@@ -22,21 +22,32 @@ import MonthIndicator from './components/Calendar/MonthIndicator';
 
 //The main Component/App
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [selectDate, setSelectDate] = useState(moment().toDate());
+  interface ITodo {
+    text: string;
+    date: Date;
+    completed: boolean;
+    _id: number;
+  }
+
+  interface IHolidays {
+    dagar: string;
+  }
+
+  const [todos, setTodos] = useState<ITodo[]>([]);
+  const [selectDate, setSelectDate] = useState<Date>(moment().toDate());
 
   const [text, setText] = useState('');
   const [day, setDay] = useState('');
-  const [holidays, setHolidays] = useState([]);
-  const [yearMonth, setYearMonth] = useState(
+  const [holidays, setHolidays] = useState<IHolidays[]>([]);
+  const [yearMonth, setYearMonth] = useState<string>(
     moment(selectDate).format('YYYY/MM')
   );
 
   //Fetch to database. Same as componentDidMount and ComponentDidUpdate
   useEffect(() => {
     const fetchTodoAndSetTodos = async () => {
-      const todos = await getAllTodosDb();
-      setTodos(todos);
+      const gotTodos = await getAllTodosDb();
+      setTodos(gotTodos);
     };
     fetchTodoAndSetTodos();
   }, []);
@@ -51,7 +62,7 @@ function App() {
   }, [yearMonth]);
 
   //Eventhandler that calls fetchfunction: Sends new task to db
-  const createTodo = async (todo) => {
+  const createTodo = async (todo: any) => {
     let newTodo = {
       task: todo.text,
       date: todo.day,
@@ -61,7 +72,7 @@ function App() {
   };
 
   //Eventhandler that calls fetchfunction, deletes task
-  const deleteTodo = async (_id) => {
+  const deleteTodo = async (_id: number) => {
     try {
       await deleteTodoDb(_id);
       setTodos(todos.filter(({ _id: i }) => _id !== i));
@@ -69,8 +80,8 @@ function App() {
   };
 
   //Eventhandler that calls fetchfunction: Update task in db
-  const updateTodo = async (_id, completed) => {
-    const value = todos.find((todo) => todo._id === _id);
+  const updateTodo = async (_id: number) => {
+    const value: any = todos.find((todo) => todo._id === _id);
     // e.stopPropagation();
     const payload = {
       _id: _id,
@@ -111,8 +122,6 @@ function App() {
             setSelectDate={setSelectDate}
             setDay={setDay}
             todos={todos}
-            onDelete={deleteTodo}
-            onToggle={updateTodo}
             holidays={holidays}
           />
         </main>

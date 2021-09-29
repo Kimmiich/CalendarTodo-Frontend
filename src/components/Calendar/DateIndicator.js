@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   getDayOfMonth,
   getMonthDayYear,
@@ -6,12 +5,10 @@ import {
   getYear,
 } from '../../utils/moment-utils';
 import { getDatesInMonthDisplay } from '../../utils/date-utils';
-import moment from 'moment';
 import './DateIndicator.css';
 // import TodoItem from '../Todo/TodoItem';
 
 const DateIndicator = ({
-  activeDates,
   selectDate,
   setSelectDate,
   todos,
@@ -36,17 +33,18 @@ const DateIndicator = ({
 
   const monthDates = datesInMonth.map((i) => {
     const selected =
-      getMonthDayYear(selectDate) === getMonthDayYear(i.date) ? 'selected' : '';
+      getMonthDayYear(selectDate) === getMonthDayYear(i.date)
+        ? 'selected'
+        : ' ';
     const active =
-      activeDates && activeDates[getMonthDayYear(i.date)] ? 'active' : ';';
+      getMonthDayYear() === getMonthDayYear(i.date) ? 'active' : ';';
 
     const getHoliday = (selectDate) => {
       if (holidays.dagar) {
         const value = holidays.dagar;
         const todaysHolidays = value.filter(
           (holiday) =>
-            moment(holiday.datum).format('YYYY-MM-DD') ===
-            moment(selectDate).format('YYYY-MM-DD')
+            getMonthDayYear(holiday.datum) === getMonthDayYear(selectDate)
         );
 
         return todaysHolidays.map((day) => {
@@ -55,7 +53,7 @@ const DateIndicator = ({
               {day.helgdag}
             </p>
           ) : (
-            console.log('nope')
+            ''
           );
         });
       }
@@ -63,9 +61,7 @@ const DateIndicator = ({
 
     const getTodos = (selectDate) => {
       const toDaysTodos = todos.filter(
-        (todo) =>
-          moment(todo.date).format('YYYY-MM-DD') ===
-          moment(selectDate).format('YYYY-MM-DD')
+        (todo) => getMonthDayYear(todo.date) === getMonthDayYear(selectDate)
       );
 
       const number = toDaysTodos.length;
@@ -82,10 +78,7 @@ const DateIndicator = ({
     };
 
     return (
-      <article
-        key={moment(i.date).format('YYYY-DDD')}
-        className="day-container"
-      >
+      <article key={getMonthDayYear(i.date)} className="day-container">
         <div
           className={`date-icon ${selected} ${active}`}
           data-active-month={i.currentMonth}
@@ -97,7 +90,7 @@ const DateIndicator = ({
         </div>
         {getHoliday(i.date)}
 
-        <div className="btn-and-tasks" id={moment(i.date).format('YYYY-MM-DD')}>
+        <div className="btn-and-tasks" id={getMonthDayYear(i.date)}>
           {getTodos(i.date)}
           <button onClick={handleClick} className="add-indicator-on-day">
             +
