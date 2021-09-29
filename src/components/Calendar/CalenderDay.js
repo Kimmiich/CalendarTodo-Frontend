@@ -1,14 +1,15 @@
-import React from 'react';
-import moment from 'moment';
 import TodoItem from '../Todo/TodoItem';
+import {
+  getFullDate,
+  getReadableMonth,
+  getReadableDay,
+} from '../../utils/moment-utils';
 import './CalenderDay.css';
 
 const CalendarDay = ({ selectDate, todos, onDelete, onToggle }) => {
   const getTodos = (selectDate, todos) => {
     const toDaysTodos = todos.filter(
-      (todo) =>
-        moment(todo.date).format('YYYY-MM-DD') ===
-        moment(selectDate).format('YYYY-MM-DD')
+      (todo) => getFullDate(todo.date) === getFullDate(selectDate)
     );
     return toDaysTodos.map((todo) => (
       <TodoItem
@@ -24,11 +25,9 @@ const CalendarDay = ({ selectDate, todos, onDelete, onToggle }) => {
       <div className="selected-day-info">
         <h3 className="selected-day-title">Choosen day</h3>
         <h4 className="selected-day-second-title">
-          {moment(selectDate).format('dddd - Do')}
+          {getReadableDay(selectDate)}
         </h4>
-        <p className="selected-day-month">
-          {moment(selectDate).format('MMMM')}
-        </p>
+        <p className="selected-day-month">{getReadableMonth(selectDate)}</p>
       </div>
       <ul className="selected-day-todos">{getTodos(selectDate, todos)}</ul>
     </section>
