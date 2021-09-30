@@ -1,15 +1,21 @@
 import './AddTodo.css';
 
-function AddTodo({ onAdd, text, setText, day, setDay }) {
-  const onSubmit = (e) => {
-    e.preventDefault();
+interface Props {
+  text: string;
+  day: string;
+  setText: (text: string) => void;
+  setDay: (day: string) => void;
+  onAdd: (value: Object) => void;
+}
 
+const AddTodo: React.FC<Props> = ({ onAdd, text, setText, day, setDay }) => {
+  const onSubmit = (e: React.SyntheticEvent): void => {
+    e.preventDefault();
     if (!text || !day) {
       alert('Please add a task and deadline!');
       return;
     }
     onAdd({ text, day });
-
     setText('');
     setDay('');
   };
@@ -37,6 +43,6 @@ function AddTodo({ onAdd, text, setText, day, setDay }) {
       </form>
     </section>
   );
-}
+};
 
 export default AddTodo;

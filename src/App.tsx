@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import './app.css';
 import Errorboundary from './utils/Errorboundary';
@@ -21,7 +21,7 @@ import DateIndicator from './components/Calendar/DateIndicator';
 import MonthIndicator from './components/Calendar/MonthIndicator';
 
 //The main Component/App
-function App() {
+const App: React.FC = () => {
   interface ITodo {
     text: string;
     date: Date;
@@ -128,6 +128,6 @@ function App() {
       </main>
     </Errorboundary>
   );
-}
+};
 
 export default App;

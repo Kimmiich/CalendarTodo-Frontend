@@ -1,6 +1,7 @@
+import React from 'react';
 import './WeekdayIndicator.css';
 
-const WeekdayIndicator = () => {
+const WeekdayIndicator: React.FC = () => {
   const weekdays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const weekdayName = weekdays.map((day, key) => {
     return (
