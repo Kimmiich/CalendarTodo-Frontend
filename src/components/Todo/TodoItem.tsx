@@ -4,15 +4,12 @@ import moment from 'moment';
 import './TodoItem.css';
 
 interface Props {
-  todo: any;
+  todo: { _id: string; completed: boolean; task: string; date: string };
   onDelete: (val1: string) => void;
   onToggle: (val1: string, val2: boolean) => void;
 }
 
 const TodoItem: React.FC<Props> = ({ todo, onDelete, onToggle }) => {
-  console.log(todo);
-  console.log(typeof todo);
-  console.log(typeof todo._id);
   return (
     <li
       onClick={(e) => onToggle(todo._id, todo.completed)}

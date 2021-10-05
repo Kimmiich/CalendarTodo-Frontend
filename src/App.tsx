@@ -62,7 +62,7 @@ const App: React.FC = () => {
   }, [yearMonth]);
 
   //Eventhandler that calls fetchfunction: Sends new task to db
-  const createTodo = async (todo: any) => {
+  const createTodo = async (todo: { text: string; day: string }) => {
     let newTodo = {
       task: todo.text,
       date: todo.day,

@@ -5,7 +5,7 @@ interface Props {
   day: string;
   setText: (text: string) => void;
   setDay: (day: string) => void;
-  onAdd: (value: Object) => void;
+  onAdd: (value: { text: string; day: string }) => void;
 }
 
 const AddTodo: React.FC<Props> = ({ onAdd, text, setText, day, setDay }) => {
